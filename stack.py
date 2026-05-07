@@ -21,6 +21,12 @@ class Stack:
     def is_empty(self):
         return len(self.items) == 0
 
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
 
 def calculateAnswer(expression):
     ans = Stack(int)
