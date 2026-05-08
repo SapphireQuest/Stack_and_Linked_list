@@ -27,6 +27,32 @@ class Node:
         self.next = None
 
 
+def linked(nums):
+    head = None
+    for num in nums:
+        new_node = Node(num)
+        if head is None:
+            head = new_node
+        else:
+            current = head
+            while current.next is not None:
+                current = current.next
+            current.next = new_node
+    return head
+
+
+def check_palindrome(head, string):
+    stack = Stack(str)
+    current = head
+    for char in string:
+        stack.push(char)
+    while current is not None:
+        if current.data != stack.pop():
+            return False
+        current = current.next
+    return True
+
+     
 
 def calculateAnswer(expression):
     ans = Stack(int)
@@ -71,9 +97,14 @@ def changeToPostfix(infix):
          
         
 def main():
-    print("Provide expression: ")
-    user_input = input()
-    expression = changeToPostfix(user_input)
+    user_expression = input("Provide expression: ")
+    expression = changeToPostfix(user_expression)
     calculateAnswer(expression) 
+    
+    user_string = input("Provide string: ")
+    head =  linked(user_string)
+    is_palindrome = check_palindrome(head, user_string)
+    print("Is palindrome:", is_palindrome)
+
 
 main()
